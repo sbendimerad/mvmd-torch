@@ -36,7 +36,7 @@ Two notebooks show how to use it:
 | Notebook | What it shows |
 |---|---|
 | [01 · Getting started](notebooks/01_getting_started.ipynb) | a synthetic 6-channel signal with three rhythms (10, 20 and 40 Hz): the modes recover each rhythm with the right amplitude on each channel |
-| [02 · Real EEG: the alpha rhythm](notebooks/02_real_eeg_alpha_rhythm.ipynb) | 8 EEG channels recorded with eyes closed: MVMD isolates the alpha rhythm and the beta bursts (needs , the data is downloaded automatically) |
+| [02 · Real EEG: the alpha rhythm](notebooks/02_real_eeg_alpha_rhythm.ipynb) | 8 EEG channels recorded with eyes closed: MVMD isolates the alpha rhythm and the beta bursts (needs `pip install mne`; the data is downloaded automatically) |
 
 ## Parameters
 
