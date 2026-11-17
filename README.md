@@ -6,7 +6,9 @@ MVMD splits a multichannel signal into a few oscillatory **modes**: narrow frequ
 
 This implementation runs on the GPU with PyTorch, which makes the decomposition tractable on recordings with hundreds of channels. It was written for the analysis of resting-state MEG (306 sensors) in my Master's thesis.
 
-![The amplitude of each mode follows the truth on every channel](docs/amplitudes.png)
+![MVMD on real EEG with eyes closed: the raw signals of three occipital channels (top) are split into five modes; mode 2 is the alpha rhythm at 10.4 Hz on every channel, and modes 3 and 4 show bursts of beta activity](docs/mvmd_real_eeg.png)
+
+*Real EEG with eyes closed (PhysioNet, 8 occipital channels): MVMD separates the alpha rhythm (mode 2, 10.4 Hz), present on every channel, from slow waves and from bursts of beta activity that are invisible in the raw signal. See [notebook 02](notebooks/02_real_eeg_alpha_rhythm.ipynb).*
 
 ## Install
 
@@ -29,7 +31,12 @@ u.shape                                  # (K, samples, channels): the modes
 centre_frequencies_hz = omega.real.ravel() * 250   # times your sampling rate (Hz)
 ```
 
-The [getting-started notebook](notebooks/01_getting_started.ipynb) decomposes a synthetic 6-channel signal with three brain-like rhythms (10, 20 and 40 Hz) and checks, channel by channel, that the modes recover them.
+Two notebooks show how to use it:
+
+| Notebook | What it shows |
+|---|---|
+| [01 · Getting started](notebooks/01_getting_started.ipynb) | a synthetic 6-channel signal with three rhythms (10, 20 and 40 Hz): the modes recover each rhythm with the right amplitude on each channel |
+| [02 · Real EEG: the alpha rhythm](notebooks/02_real_eeg_alpha_rhythm.ipynb) | 8 EEG channels recorded with eyes closed: MVMD isolates the alpha rhythm and the beta bursts (needs , the data is downloaded automatically) |
 
 ## Parameters
 
@@ -62,6 +69,8 @@ This is a PyTorch port of MVMD, built on the reference MATLAB code of MVMD and o
 - N. ur Rehman and H. Aftab, *Multivariate Variational Mode Decomposition*, IEEE Transactions on Signal Processing, 67(23), 2019.
 - K. Dragomiretskiy and D. Zosso, *Variational Mode Decomposition*, IEEE Transactions on Signal Processing, 62(3), 2014.
 - [vmdpy](https://github.com/vrcarva/vmdpy), the Python implementation of VMD by V. Carvalho.
+
+The EEG of notebook 02 comes from the [EEG Motor Movement/Imagery Dataset](https://physionet.org/content/eegmmidb/1.0.0/) (G. Schalk et al., 2004), distributed by PhysioNet under the ODC-By 1.0 licence.
 
 If you use this code, please cite the MVMD paper above, and this repository.
 
